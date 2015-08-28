@@ -48,12 +48,12 @@ public class Graph : Gtk.EventBox
 	private List<weak List<Tuple<double?,double?>?>> sets = null;
 	public List<Tuple<double?,string>> Xaxis = null;
 	public List<Tuple<double?,string>> Yaxis = null;
-	private		double minx=-1;
-	private	   double maxx=0;
-	private   	double xscale = 0;
-	private   	double miny=0;
-	private	double maxy=0;
-	private   	double yscale = 0;
+	private double minx=-1;
+	private double maxx=0;
+	private double xscale = 0;
+	private double miny=0;
+	private double maxy=0;
+	private double yscale = 0;
 	private double xoff = 80.0;
 	private double yoff = 40.0;
 

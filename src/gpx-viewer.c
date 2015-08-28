@@ -1011,82 +1011,6 @@ void row_visible_toggled(GtkCellRendererToggle *toggle, const gchar *path, gpoin
     }
 }
 
-
-void show_elevation(GtkMenuItem *item, gpointer user_data)
-{
-	GpxViewerPrivate *priv = GPX_VIEWER_GET_PRIVATE(user_data);	
-    if(gpx_graph_get_mode(priv->gpx_graph) != GPX_GRAPH_GRAPH_MODE_ELEVATION)
-    {
-        g_debug("switch to elevation\n");
-        gpx_graph_set_mode(priv->gpx_graph, GPX_GRAPH_GRAPH_MODE_ELEVATION);
-    }
-}
-
-
-void show_speed(GtkMenuItem *item, gpointer user_data)
-{
-	GpxViewerPrivate *priv = GPX_VIEWER_GET_PRIVATE(user_data);	
-    if(gpx_graph_get_mode(priv->gpx_graph) != GPX_GRAPH_GRAPH_MODE_SPEED)
-    {
-        g_debug("switch to speed\n");
-        gpx_graph_set_mode(priv->gpx_graph, GPX_GRAPH_GRAPH_MODE_SPEED);
-    }
-}
-
-
-void show_distance(GtkMenuItem *item, gpointer user_data)
-{
-	GpxViewerPrivate *priv = GPX_VIEWER_GET_PRIVATE(user_data);	
-    if(gpx_graph_get_mode(priv->gpx_graph) != GPX_GRAPH_GRAPH_MODE_DISTANCE)
-    {
-        g_debug("switch to distance\n");
-        gpx_graph_set_mode(priv->gpx_graph, GPX_GRAPH_GRAPH_MODE_DISTANCE);
-    }
-}
-
-
-void show_acceleration_h(GtkMenuItem *item, gpointer user_data)
-{
-	GpxViewerPrivate *priv = GPX_VIEWER_GET_PRIVATE(user_data);	
-    if(gpx_graph_get_mode(priv->gpx_graph) != GPX_GRAPH_GRAPH_MODE_ACCELERATION_H)
-    {
-        g_debug("switch to acceleration\n");
-        gpx_graph_set_mode(priv->gpx_graph, GPX_GRAPH_GRAPH_MODE_ACCELERATION_H);
-    }
-}
-void show_heartrate(GtkMenuItem *item, gpointer user_data)
-{
-	GpxViewerPrivate *priv = GPX_VIEWER_GET_PRIVATE(user_data);	
-    if(gpx_graph_get_mode(priv->gpx_graph) != GPX_GRAPH_GRAPH_MODE_HEARTRATE)
-    {
-        g_debug("switch to heartrate\n");
-        gpx_graph_set_mode(priv->gpx_graph, GPX_GRAPH_GRAPH_MODE_HEARTRATE);
-    }
-}
-void show_cadence(GtkMenuItem *item, gpointer user_data)
-{
-	GpxViewerPrivate *priv = GPX_VIEWER_GET_PRIVATE(user_data);	
-    if(gpx_graph_get_mode(priv->gpx_graph) != GPX_GRAPH_GRAPH_MODE_CADENCE)
-    {
-        g_debug("switch to cadence\n");
-        gpx_graph_set_mode(priv->gpx_graph, GPX_GRAPH_GRAPH_MODE_CADENCE);
-    }
-}
-
-
-
-
-void show_vertical_speed(GtkMenuItem *item, gpointer user_data)
-{
-	GpxViewerPrivate *priv = GPX_VIEWER_GET_PRIVATE(user_data);	
-    if(gpx_graph_get_mode(priv->gpx_graph) != GPX_GRAPH_GRAPH_MODE_SPEED_V)
-    {
-        g_debug("switch to vertical speed\n");
-        gpx_graph_set_mode(priv->gpx_graph, GPX_GRAPH_GRAPH_MODE_SPEED_V);
-    }
-}
-
-
 static void interface_create_fake_master_track(GpxFileBase *file, GtkTreeIter *liter, gpointer gpx_viewer)
 {
 	GpxViewerPrivate *priv = GPX_VIEWER_GET_PRIVATE(gpx_viewer);
@@ -1301,41 +1225,6 @@ void map_selection_combo_changed_cb(GtkComboBox *box, gpointer data)
 }
 
 
-
-
-/* React when graph mode changes */
-static void graph_mode_changed(GpxGraph *graph, GParamSpec *sp, gpointer gpx_viewer)
-{
-	GpxViewerPrivate *priv = GPX_VIEWER_GET_PRIVATE(gpx_viewer);
-    int mode = gpx_graph_get_mode(graph);
-    g_debug("Graph mode switched: %i\n", mode);
-    switch(mode)
-    {
-        case GPX_GRAPH_GRAPH_MODE_ELEVATION:
-            gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(
-                gtk_builder_get_object(priv->builder, "view_menu_elevation")), TRUE);
-            break;
-        case GPX_GRAPH_GRAPH_MODE_SPEED:
-            gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(
-                gtk_builder_get_object(priv->builder, "view_menu_speed")), TRUE);
-            break;
-        case GPX_GRAPH_GRAPH_MODE_DISTANCE:
-            gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(
-                gtk_builder_get_object(priv->builder, "view_menu_distance")), TRUE);
-            break;
-        case GPX_GRAPH_GRAPH_MODE_ACCELERATION_H:
-            gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(
-                gtk_builder_get_object(priv->builder, "view_menu_acceleration")), TRUE);
-            break;
-        case GPX_GRAPH_GRAPH_MODE_SPEED_V:
-            gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(
-                gtk_builder_get_object(priv->builder, "view_menu_vertical_speed")), TRUE);
-            break;
-        default:
-            break;
-    }
-
-}
 void dock_item_state_changed(GdlDockItem *dock_item,GParamSpec *sp, GtkWidget *menu_item)
 {
     gboolean state = FALSE;
@@ -1414,8 +1303,10 @@ static void create_interface(GtkApplication *gtk_app)
     gpx_graph_container = gtk_frame_new(NULL);
     gtk_widget_set_size_request(gpx_graph_container, -1, 120);
     gtk_frame_set_shadow_type(GTK_FRAME(gpx_graph_container), GTK_SHADOW_IN);
-    gtk_container_add(GTK_CONTAINER(gpx_graph_container), GTK_WIDGET(priv->gpx_graph));
-    gtk_widget_show(GTK_WIDGET(priv->gpx_graph));
+    gpx_graph_add_graph_to_container(priv->gpx_graph, GTK_CONTAINER(gpx_graph_container));
+
+    // gtk_container_add(GTK_CONTAINER(gpx_graph_container), GTK_WIDGET(priv->gpx_graph));
+    // priv->gpx_graph->show();
     //gtk_widget_set_no_show_all(GTK_WIDGET(gpx_graph_container), TRUE);
 
     gtk_paned_add2(GTK_PANED(gtk_builder_get_object(priv->builder, "main_vpane")), GTK_WIDGET(gpx_graph_container));
@@ -1489,7 +1380,6 @@ static void create_interface(GtkApplication *gtk_app)
     /**
      * Restore/Set graph mode
      */
-    g_signal_connect(priv->gpx_graph, "notify::mode", G_CALLBACK(graph_mode_changed), gtk_app);
     gpx_viewer_settings_add_object_property(priv->settings, G_OBJECT(priv->gpx_graph), "mode");
 
     /* Setup the map selector widget */
@@ -1664,7 +1554,8 @@ void open_gpx_file(GtkMenu *item, GpxViewer *gpx_viewer)
     g_free(path);
 
     dialog = GTK_WIDGET(gtk_builder_get_object(fbuilder, "gpx_viewer_file_chooser"));
-
+    gtk_window_set_modal(GTK_WINDOW(dialog), 1);
+    gtk_window_set_transient_for(GTK_WINDOW(dialog), GTK_WINDOW(gtk_builder_get_object(priv->builder,"gpx_viewer_window")));
     path = gpx_viewer_settings_get_string(priv->settings, "open-dialog", "last-dir", NULL);
     if(path)
     {

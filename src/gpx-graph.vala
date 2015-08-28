@@ -18,6 +18,7 @@
  */
 
 using Gtk;
+using Gdk;
 using Gpx;
 using Gpx.Viewer;
 using GLib;
@@ -70,6 +71,9 @@ namespace Gpx
 		private int _smooth_factor = 1;
 		/* By default points are shown on graph */
 		private bool _show_points = true;
+
+		// Currently selecting inside the graph?
+		private bool _selecting = false;
 
 		private Pango.FontDescription fd = null;
 		private Cairo.Surface surf = null;
@@ -145,14 +149,19 @@ namespace Gpx
 		{
 			/* Create and setup font description */
 			this.fd = new Pango.FontDescription();
-			fd.set_family("sans mono");
+			fd.set_family("Cantarell sans mono");
+
 			/* make the event box paintable and give it an own window to paint on */
 			this.app_paintable = true;
 			this.visible_window = true;
+
 			/* signals */
 			this.size_allocate.connect(size_allocate_cb);
 			this.button_press_event.connect(button_press_event_cb);
+
+			this.add_events(Gdk.EventMask.POINTER_MOTION_MASK);
 			this.motion_notify_event.connect(motion_notify_event_cb);
+
 			this.button_release_event.connect(button_release_event_cb);
 
 			this.draw.connect(a_expose_event);
@@ -179,6 +188,7 @@ namespace Gpx
 
 		/* signal if the selection range changes */
 		signal void selection_changed(Gpx.Track? track, Gpx.Point? start, Gpx.Point? stop);
+
 		/**
 		 * Private functions
 		 */
@@ -206,6 +216,7 @@ namespace Gpx
 			}
 			return null;
 		}
+
 		private bool button_press_event_cb(Gdk.EventButton event)
 		{
 			if(this.track == null) return true;
@@ -213,7 +224,7 @@ namespace Gpx
 			if(point != null) {
 				if(event.button == 1){
 					this.start = point;
-				}else{
+				} else {
 					this.start = null;
 					point_clicked(point);
 				}
@@ -224,30 +235,35 @@ namespace Gpx
 		private bool motion_notify_event_cb(Gdk.EventMotion event)
 		{
 			if(this.track == null) return true;
-			if(this.start == null) return true;
-
 			Gpx.Point *point = this.get_point_from_position(event.x, event.y);
+
 			if(point != null)
 			{
-				this.stop = point;
-				/* queue redraw so the selection is updated */
-				this.queue_draw();
-				if(this.start != null && this.stop  != null)
-				{
-					if(start.get_time() != stop.get_time())
+				if(this.start == null)  {
+					this.highlight_point(point);
+					this.show_info(point);
+				} else {
+					this.stop = point;
+					/* queue redraw so the selection is updated */
+					this.queue_draw();
+					if(this.start != null && this.stop  != null)
 					{
-						if(start.get_time() < stop.get_time()) {
-							selection_changed(this.track, start, stop);
-						} else {
-							selection_changed(this.track, stop, start);
+						if(start.get_time() != stop.get_time())
+						{
+							if(start.get_time() < stop.get_time()) {
+								selection_changed(this.track, start, stop);
+							} else {
+								selection_changed(this.track, stop, start);
+							}
+							return true;
 						}
-						return true;
 					}
+					selection_changed(this.track, this.track.points.first().data, this.track.points.last().data);
 				}
-				selection_changed(this.track, this.track.points.first().data, this.track.points.last().data);
 			}
 			return true;
 		}
+
 		private bool button_release_event_cb(Gdk.EventButton event)
 		{
 			if(this.track == null) return true;
@@ -277,6 +293,7 @@ namespace Gpx
 			}
 			return true;
 		}
+
 		private void size_allocate_cb(Gtk.Allocation alloc)
 		{
 			/* Invalidate the previous plot, so it is redrawn */
@@ -394,7 +411,7 @@ namespace Gpx
 
 			log(LOG_DOMAIN, LogLevelFlags.LEVEL_DEBUG, "Draw grid lines");
 			/* Draw speed and ticks */
-			ctx.set_source_rgba(0.0, 0.0, 0.0, 1.0);
+			ctx.set_source_rgba(1.0, 0.0, 0.0, 1.0);
 
 			fd.set_absolute_size(12*1024);
 			layout.set_font_description(fd);

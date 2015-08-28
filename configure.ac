@@ -67,6 +67,7 @@ PKG_CHECK_MODULES([champlain], [
 PKG_CHECK_MODULES([clutter], [
         clutter-gtk-1.0 >= 1.4.0
 ])
+PKG_CHECK_MODULES([gee], [gee-0.8 >= 0.18.0])
 
 
 

@@ -57,7 +57,7 @@ gpx_viewer_SOURCES=\
 	src/gpx-parser.vala\
 	src/gpx-parser-xml.vala\
     src/fit-parser.vala\
-    src/gpx-graph.vala\
+    src/gpx-graph2.vala\
     src/gpx-playback.vala\
     src/gpx-track-treemodel.vala\
     src/gpx-settings.vala\
@@ -66,13 +66,14 @@ gpx_viewer_SOURCES=\
 	src/gpx-viewer.c
 
 
-gpx_viewer_VALAFLAGS= --pkg=config --pkg=clutter-1.0 --pkg=gtk+-3.0 --pkg=libxml-2.0 --pkg=champlain-0.12 --pkg=gpx-viewer --pkg=champlain-gtk-0.12 --basedir=$(top_builddir)/src --vapidir=$(top_srcdir)/vapi -H $(top_builddir)/src/gpx.h --use-header
+gpx_viewer_VALAFLAGS= --pkg=config --pkg=clutter-1.0 --pkg=gtk+-3.0 --pkg=libxml-2.0 --pkg=champlain-0.12 --pkg=gee-0.8 --pkg=gpx-viewer --pkg=champlain-gtk-0.12 --basedir=$(top_builddir)/src --vapidir=$(top_srcdir)/vapi -H $(top_builddir)/src/gpx.h --use-header
 
 LIBS=\
 	@gtk_LIBS@\
 	@champlain_LIBS@\
 	@libxml_LIBS@\
 	@libgdl_LIBS@\
+	@gee_LIBS@\
     -lm
 
 AM_CFLAGS=\
@@ -80,6 +81,7 @@ AM_CFLAGS=\
 	@champlain_CFLAGS@\
 	@libxml_CFLAGS@\
 	@libgdl_CFLAGS@\
+	@gee_CFLAGS@\
 	-DDATA_DIR="\"$(pkgdatadir)\""\
 	-D_XOPEN_SOURCE=500\
     -std=c99\
