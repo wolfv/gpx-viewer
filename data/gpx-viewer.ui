@@ -1,402 +1,386 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
-  <object class="GtkScrolledWindow" id="FileListWidget">
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="shadow_type">in</property>
-    <child>
-      <object class="GtkTreeView" id="TracksTreeView">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="model">routes_store</property>
-        <property name="headers_clickable">False</property>
-        <property name="rules_hint">True</property>
-        <property name="search_column">0</property>
-        <child internal-child="selection">
-          <object class="GtkTreeSelection" id="treeview-selection1"/>
-        </child>
-        <child>
-          <object class="GtkTreeViewColumn" id="treeviewcolumn1">
-            <child>
-              <object class="GtkCellRendererToggle" id="cellrenderertoggle1">
-                <signal name="toggled" handler="row_visible_toggled" swapped="no"/>
-              </object>
-              <attributes>
-                <attribute name="visible">2</attribute>
-                <attribute name="active">3</attribute>
-              </attributes>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkTreeViewColumn" id="treeviewcolumn2">
-            <property name="spacing">6</property>
-            <property name="sizing">autosize</property>
-            <property name="title">Track</property>
-            <property name="expand">True</property>
-            <child>
-              <object class="GtkCellRendererText" id="cellrenderertext2">
-                <property name="xalign">0</property>
-              </object>
-              <attributes>
-                <attribute name="text">0</attribute>
-              </attributes>
-            </child>
-            <child>
-              <object class="GtkCellRendererText" id="cellrenderertext1">
-                <property name="xalign">1</property>
-              </object>
-              <attributes>
-                <attribute name="visible">2</attribute>
-                <attribute name="text">4</attribute>
-              </attributes>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkTreeViewColumn" id="treeviewcolumn3">
-            <property name="title">Average speed</property>
-            <child>
-              <object class="GtkCellRendererText" id="cellrenderertext5">
-                <property name="xalign">0</property>
-              </object>
-              <attributes>
-                <attribute name="visible">2</attribute>
-                <attribute name="text">5</attribute>
-              </attributes>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkTable" id="TrackInfoWidget">
+  <requires lib="gtk+" version="3.0"/>
+  <object class="GtkGrid" id="TrackInfoWidget">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="n_rows">13</property>
-    <property name="n_columns">2</property>
-    <property name="column_spacing">6</property>
-    <property name="row_spacing">6</property>
     <child>
       <object class="GtkLabel" id="distance_title_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Distance:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
-      </object>
-      <packing>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="duration_title_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="xalign">1</property>
-        <property name="label" translatable="yes">&lt;b&gt;Duration:&lt;/b&gt;</property>
-        <property name="use_markup">True</property>
       </object>
       <packing>
-        <property name="top_attach">1</property>
-        <property name="bottom_attach">2</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
+        <property name="left_attach">0</property>
+        <property name="top_attach">0</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="distance_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">0</property>
         <property name="label" translatable="yes">n/a</property>
         <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
       </object>
       <packing>
         <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="y_options">GTK_FILL</property>
+        <property name="top_attach">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="duration_title_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">&lt;b&gt;Duration:&lt;/b&gt;</property>
+        <property name="use_markup">True</property>
+        <property name="xalign">1</property>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">1</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="duration_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">0</property>
         <property name="label" translatable="yes">n/a</property>
         <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
       </object>
       <packing>
         <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
         <property name="top_attach">1</property>
-        <property name="bottom_attach">2</property>
-        <property name="y_options">GTK_FILL</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="start_time_title_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">&lt;b&gt;Start time:&lt;/b&gt;</property>
+        <property name="use_markup">True</property>
+        <property name="xalign">1</property>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="start_time_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="stop_time_title_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">&lt;b&gt;Stop time:&lt;/b&gt;</property>
+        <property name="use_markup">True</property>
+        <property name="xalign">1</property>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">3</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="stop_time_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">3</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="average_title_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Average:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
+        <property name="left_attach">0</property>
         <property name="top_attach">4</property>
-        <property name="bottom_attach">5</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="moving_average_title_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Moving average:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
+        <property name="left_attach">0</property>
         <property name="top_attach">5</property>
-        <property name="bottom_attach">6</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="moving_averate_time_title_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Moving time:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
+        <property name="left_attach">0</property>
         <property name="top_attach">6</property>
-        <property name="bottom_attach">7</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="max_speed_title_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Max. speed:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
+        <property name="left_attach">0</property>
         <property name="top_attach">7</property>
-        <property name="bottom_attach">8</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="elevation_difference_title_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Elevation Diff.:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
+        <property name="left_attach">0</property>
         <property name="top_attach">8</property>
-        <property name="bottom_attach">9</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="elevation_total_up_title_label">
         <property name="visible">True</property>
-        <property name="xalign">1</property>
+        <property name="can_focus">False</property>
         <property name="label" translatable="yes">&lt;b&gt;Acc. Elevation Up:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
+        <property name="left_attach">0</property>
         <property name="top_attach">9</property>
-        <property name="bottom_attach">10</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="elevation_total_down_title_label">
         <property name="visible">True</property>
-        <property name="xalign">1</property>
+        <property name="can_focus">False</property>
         <property name="label" translatable="yes">&lt;b&gt;Acc. Elevation Down:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
+        <property name="left_attach">0</property>
         <property name="top_attach">10</property>
-        <property name="bottom_attach">11</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="gradient_title_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Gradient:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
+        <property name="left_attach">0</property>
         <property name="top_attach">11</property>
-        <property name="bottom_attach">12</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
     <child>
-      <object class="GtkLabel" id="average_label">
+      <object class="GtkLabel" id="heart_rate_title_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-        <property name="ellipsize">end</property>
+        <property name="label" translatable="yes">&lt;b&gt;Average heart-rate:&lt;/b&gt;</property>
+        <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">4</property>
-        <property name="bottom_attach">5</property>
-        <property name="y_options">GTK_FILL</property>
+        <property name="left_attach">0</property>
+        <property name="top_attach">12</property>
       </packing>
     </child>
     <child>
-      <object class="GtkLabel" id="moving_average_label">
+      <object class="GtkLabel" id="calcories_title_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-        <property name="ellipsize">end</property>
+        <property name="label" translatable="yes">&lt;b&gt;Calories estimation:&lt;/b&gt;</property>
+        <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">5</property>
-        <property name="bottom_attach">6</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="moving_average_time_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-        <property name="ellipsize">end</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">6</property>
-        <property name="bottom_attach">7</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="max_speed_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-        <property name="ellipsize">end</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">7</property>
-        <property name="bottom_attach">8</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="elevation_difference_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-        <property name="ellipsize">end</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">8</property>
-        <property name="bottom_attach">9</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="elevation_total_up_label">
-        <property name="visible">True</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-        <property name="ellipsize">end</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">9</property>
-        <property name="bottom_attach">10</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="elevation_total_down_label">
-        <property name="visible">True</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-        <property name="ellipsize">end</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">10</property>
-        <property name="bottom_attach">11</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="gradient_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-        <property name="ellipsize">end</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">11</property>
-        <property name="bottom_attach">12</property>
-        <property name="y_options">GTK_FILL</property>
+        <property name="left_attach">0</property>
+        <property name="top_attach">13</property>
       </packing>
     </child>
     <child>
       <object class="GtkLabel" id="label4">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Playback:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
+        <property name="left_attach">0</property>
         <property name="top_attach">14</property>
-        <property name="bottom_attach">15</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
     <child>
-      <object class="GtkHBox" id="hbox1">
+      <object class="GtkLabel" id="average_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">4</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="moving_average_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">5</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="moving_average_time_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
+        <property name="yalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">6</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="max_speed_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">7</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="elevation_difference_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">8</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="elevation_total_up_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">9</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="elevation_total_down_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">10</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="gradient_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="ellipsize">end</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">11</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="heart_rate_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">12</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="calories_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">n/a</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="left_attach">1</property>
+        <property name="top_attach">13</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="box1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
@@ -410,7 +394,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="stock">gtk-media-play</property>
-                <property name="icon-size">1</property>
+                <property name="icon_size">1</property>
               </object>
             </child>
           </object>
@@ -432,7 +416,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="stock">gtk-media-pause</property>
-                <property name="icon-size">1</property>
+                <property name="icon_size">1</property>
               </object>
             </child>
           </object>
@@ -454,7 +438,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="stock">gtk-media-stop</property>
-                <property name="icon-size">1</property>
+                <property name="icon_size">1</property>
               </object>
             </child>
           </object>
@@ -467,133 +451,7 @@
       </object>
       <packing>
         <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
         <property name="top_attach">14</property>
-        <property name="bottom_attach">15</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="start_time_title_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">1</property>
-        <property name="label" translatable="yes">&lt;b&gt;Start time:&lt;/b&gt;</property>
-        <property name="use_markup">True</property>
-      </object>
-      <packing>
-        <property name="top_attach">2</property>
-        <property name="bottom_attach">3</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="stop_time_title_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">1</property>
-        <property name="label" translatable="yes">&lt;b&gt;Stop time:&lt;/b&gt;</property>
-        <property name="use_markup">True</property>
-      </object>
-      <packing>
-        <property name="top_attach">3</property>
-        <property name="bottom_attach">4</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="start_time_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">2</property>
-        <property name="bottom_attach">3</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="stop_time_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">3</property>
-        <property name="bottom_attach">4</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="heart_rate_title_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">1</property>
-        <property name="label" translatable="yes">&lt;b&gt;Average heart-rate:&lt;/b&gt;</property>
-        <property name="use_markup">True</property>
-      </object>
-      <packing>
-        <property name="top_attach">12</property>
-        <property name="bottom_attach">13</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="heart_rate_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">12</property>
-        <property name="bottom_attach">13</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="calcories_title_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">1</property>
-        <property name="label" translatable="yes">&lt;b&gt;Calories estimation:&lt;/b&gt;</property>
-        <property name="use_markup">True</property>
-      </object>
-      <packing>
-        <property name="top_attach">13</property>
-        <property name="bottom_attach">14</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="calories_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="label" translatable="yes">n/a</property>
-      </object>
-      <packing>
-        <property name="left_attach">1</property>
-        <property name="right_attach">2</property>
-        <property name="top_attach">13</property>
-        <property name="bottom_attach">14</property>
-        <property name="x_options">GTK_FILL</property>
-        <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
   </object>
@@ -601,20 +459,21 @@
   <object class="GtkWindow" id="gpx_viewer_window">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">GPX Viewer</property>
-    <property name="default_width">680</property>
-    <property name="default_height">480</property>
+    <property name="default_width">900</property>
+    <property name="default_height">600</property>
     <property name="icon_name">gpx-viewer</property>
     <accel-groups>
       <group name="accelgroup1"/>
     </accel-groups>
-    <signal name="destroy-event" handler="on_destroy" swapped="no"/>
     <signal name="delete-event" handler="on_destroy" swapped="no"/>
+    <signal name="destroy-event" handler="on_destroy" swapped="no"/>
     <signal name="size-allocate" handler="main_window_size_changed" swapped="no"/>
     <child>
-      <object class="GtkVBox" id="gpx_viewer_vbox">
+      <object class="GtkBox" id="gpx_viewer_vbox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="spacing">6</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkMenuBar" id="menubar1">
             <property name="visible">True</property>
@@ -860,13 +719,15 @@
           </packing>
         </child>
         <child>
-          <object class="GtkHPaned" id="main_hpane">
+          <object class="GtkPaned" id="main_hpane">
+            <property name="orientation">horizontal</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkHBox" id="main_view_hpane">
+              <object class="GtkBox" id="main_view_hpane">
+                <property name="orientation">horizontal</property>
+                <property name="width_request">350</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-		<property name="width-request">350</property>
               </object>
               <packing>
                 <property name="resize">False</property>
@@ -874,7 +735,8 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVPaned" id="main_vpane">
+              <object class="GtkPaned" id="main_vpane">
+                <property name="orientation">vertical</property>
                 <property name="can_focus">False</property>
                 <child>
                   <object class="GtkFrame" id="map_frame">
@@ -904,10 +766,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkHBox" id="hbox2">
+          <object class="GtkBox" id="hbox2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">6</property>
+            <property name="orientation">horizontal</property>
             <child>
               <object class="GtkStatusbar" id="statusbar2">
                 <property name="visible">True</property>
@@ -932,10 +795,104 @@
       </object>
     </child>
   </object>
+  <object class="GtkSizeGroup" id="heading_label_sizegroup"/>
   <object class="GtkAdjustment" id="map_zoom_level_adjustment">
     <property name="lower">1</property>
     <property name="upper">19</property>
     <property name="value">5</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">1</property>
+  </object>
+  <object class="GtkTreeStore" id="routes_store">
+    <columns>
+      <!-- column-name Name -->
+      <column type="gchararray"/>
+      <!-- column-name Route -->
+      <column type="gpointer"/>
+      <!-- column-name Selectable -->
+      <column type="gboolean"/>
+      <!-- column-name Visible -->
+      <column type="gboolean"/>
+      <!-- column-name Points -->
+      <column type="guint"/>
+      <!-- column-name Average -->
+      <column type="gdouble"/>
+    </columns>
+  </object>
+  <object class="GtkScrolledWindow" id="FileListWidget">
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="shadow_type">in</property>
+    <child>
+      <object class="GtkTreeView" id="TracksTreeView">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="model">routes_store</property>
+        <property name="headers_clickable">False</property>
+        <property name="rules_hint">True</property>
+        <property name="search_column">0</property>
+        <child internal-child="selection">
+          <object class="GtkTreeSelection" id="treeview-selection1"/>
+        </child>
+        <child>
+          <object class="GtkTreeViewColumn" id="treeviewcolumn1">
+            <child>
+              <object class="GtkCellRendererToggle" id="cellrenderertoggle1">
+                <signal name="toggled" handler="row_visible_toggled" swapped="no"/>
+              </object>
+              <attributes>
+                <attribute name="visible">2</attribute>
+                <attribute name="active">3</attribute>
+              </attributes>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkTreeViewColumn" id="treeviewcolumn2">
+            <property name="spacing">6</property>
+            <property name="sizing">autosize</property>
+            <property name="title">Track</property>
+            <property name="expand">True</property>
+            <child>
+              <object class="GtkCellRendererText" id="cellrenderertext2">
+                <property name="xalign">0</property>
+              </object>
+              <attributes>
+                <attribute name="text">0</attribute>
+              </attributes>
+            </child>
+            <child>
+              <object class="GtkCellRendererText" id="cellrenderertext1">
+                <property name="xalign">1</property>
+              </object>
+              <attributes>
+                <attribute name="visible">2</attribute>
+                <attribute name="text">4</attribute>
+              </attributes>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkTreeViewColumn" id="treeviewcolumn3">
+            <property name="title">Average speed</property>
+            <child>
+              <object class="GtkCellRendererText" id="cellrenderertext5">
+                <property name="xalign">0</property>
+              </object>
+              <attributes>
+                <attribute name="visible">2</attribute>
+                <attribute name="text">5</attribute>
+              </attributes>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkAdjustment" id="smooth_factor_adjustment">
+    <property name="lower">1</property>
+    <property name="upper">100</property>
+    <property name="value">4</property>
     <property name="step_increment">1</property>
     <property name="page_increment">1</property>
   </object>
@@ -950,10 +907,10 @@
       <object class="GtkLabel" id="map_selection_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="xpad">6</property>
         <property name="label" translatable="yes">&lt;b&gt;Map:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
         <property name="x_options">GTK_FILL</property>
@@ -984,9 +941,9 @@
       <object class="GtkLabel" id="map_zoom_level_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Zoom level:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
         <property name="top_attach">1</property>
@@ -1018,9 +975,9 @@
       <object class="GtkLabel" id="map_show_waypoints_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Show waypoints:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
         <property name="top_attach">2</property>
@@ -1039,7 +996,6 @@
             <property name="use_action_appearance">False</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="use_action_appearance">False</property>
             <property name="active">True</property>
           </object>
         </child>
@@ -1057,9 +1013,9 @@
       <object class="GtkLabel" id="graph_smooth_factor_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Smooth factor:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
         <property name="top_attach">3</property>
@@ -1090,9 +1046,9 @@
       <object class="GtkLabel" id="graph_show_points_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xalign">1</property>
         <property name="label" translatable="yes">&lt;b&gt;Show points:&lt;/b&gt;</property>
         <property name="use_markup">True</property>
+        <property name="xalign">1</property>
       </object>
       <packing>
         <property name="top_attach">4</property>
@@ -1111,7 +1067,6 @@
             <property name="use_action_appearance">False</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="use_action_appearance">False</property>
             <property name="active">True</property>
           </object>
         </child>
@@ -1125,29 +1080,5 @@
         <property name="y_options">GTK_FILL</property>
       </packing>
     </child>
-  </object>
-  <object class="GtkSizeGroup" id="heading_label_sizegroup"/>
-  <object class="GtkTreeStore" id="routes_store">
-    <columns>
-      <!-- column-name Name -->
-      <column type="gchararray"/>
-      <!-- column-name Route -->
-      <column type="gpointer"/>
-      <!-- column-name Selectable -->
-      <column type="gboolean"/>
-      <!-- column-name Visible -->
-      <column type="gboolean"/>
-      <!-- column-name Points -->
-      <column type="guint"/>
-      <!-- column-name Average -->
-      <column type="gdouble"/>
-    </columns>
-  </object>
-  <object class="GtkAdjustment" id="smooth_factor_adjustment">
-    <property name="lower">1</property>
-    <property name="upper">100</property>
-    <property name="value">4</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">1</property>
   </object>
 </interface>

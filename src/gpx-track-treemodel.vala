@@ -26,7 +26,7 @@ namespace Gpx
 {
     public class TrackTreeModel :  GLib.Object, Gtk.TreeModel
     {
-	/* Available columns */
+        /* Available columns */
         public enum Column {
             TIME,
             DISTANCE,

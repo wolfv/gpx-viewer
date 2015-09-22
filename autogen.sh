@@ -7,9 +7,9 @@ test "$srcdir" || srcdir=.
 
 # default version requirements ...
 test "$REQUIRED_AUTOCONF_VERSION" || REQUIRED_AUTOCONF_VERSION=2.53
-test "$REQUIRED_AUTOMAKE_VERSION" || REQUIRED_AUTOMAKE_VERSION=1.7
 test "$REQUIRED_LIBTOOL_VERSION" || REQUIRED_LIBTOOL_VERSION=1.5
 test "$REQUIRED_GETTEXT_VERSION" || REQUIRED_GETTEXT_VERSION=0.12
+test "$REQUIRED_AUTOMAKE_VERSION" || REQUIRED_AUTOMAKE_VERSION=1.8
 test "$REQUIRED_GLIB_GETTEXT_VERSION" || REQUIRED_GLIB_GETTEXT_VERSION=2.2.0
 test "$REQUIRED_INTLTOOL_VERSION" || REQUIRED_INTLTOOL_VERSION=0.30
 test "$REQUIRED_PKG_CONFIG_VERSION" || REQUIRED_PKG_CONFIG_VERSION=0.14.0
@@ -311,15 +311,16 @@ AUTOHEADER=`echo $AUTOCONF | sed s/autoconf/autoheader/`
 
 case $REQUIRED_AUTOMAKE_VERSION in
     1.4*) automake_progs="automake-1.4" ;;
-    1.5*) automake_progs="automake-1.14 automake-1.13 automake-1.11 automake-1.10 automake-1.9 automake-1.8 automake-1.7 automake-1.6 automake-1.5" ;;
-    1.6*) automake_progs="automake-1.14 automake-1.13 automake-1.11 automake-1.10 automake-1.9 automake-1.8 automake-1.7 automake-1.6" ;;
-    1.7*) automake_progs="automake-1.14 automake-1.13 automake-1.11 automake-1.10 automake-1.9 automake-1.8 automake-1.7" ;;
-    1.8*) automake_progs="automake-1.14 automake-1.13 automake-1.11 automake-1.10 automake-1.9 automake-1.8" ;;
-    1.9*) automake_progs="automake-1.14 automake-1.13 automake-1.11 automake-1.10 automake-1.9" ;;
-    1.10*) automake_progs="automake-1.14 automake-1.13 automake-1.11 automake-1.10" ;;
-    1.11*) automake_progs="automake-1.14 automake-1.13 automake-1.11" ;;
-    1.13*) automake_progs="automake-1.14 automake-1.13" ;;
-    1.14*) automake_progs="automake-1.14" ;;
+    1.5*) automake_progs="automake-1.15 automake-1.13 automake-1.11 automake-1.10 automake-1.9 automake-1.8 automake-1.7 automake-1.6 automake-1.5" ;;
+    1.6*) automake_progs="automake-1.15 automake-1.13 automake-1.11 automake-1.10 automake-1.9 automake-1.8 automake-1.7 automake-1.6" ;;
+    1.7*) automake_progs="automake-1.15 automake-1.13 automake-1.11 automake-1.10 automake-1.9 automake-1.8 automake-1.7" ;;
+    1.8*) automake_progs="automake-1.15 automake-1.13 automake-1.11 automake-1.10 automake-1.9 automake-1.8" ;;
+    1.9*) automake_progs="automake-1.15 automake-1.13 automake-1.11 automake-1.10 automake-1.9" ;;
+    1.10*) automake_progs="automake-1.15 automake-1.13 automake-1.11 automake-1.10" ;;
+    1.11*) automake_progs="automake-1.15 automake-1.13 automake-1.11" ;;
+    1.13*) automake_progs="automake-1.15 automake-1.13" ;;
+    1.15*) automake_progs="automake-1.15" ;;
+    1.15*) automake_progs="automake-1.15" ;;
 esac
 version_check automake AUTOMAKE "$automake_progs" $REQUIRED_AUTOMAKE_VERSION \
     "http://ftp.gnu.org/pub/gnu/automake/automake-$REQUIRED_AUTOMAKE_VERSION.tar.gz"

@@ -33,7 +33,8 @@ namespace Gpx
 	public struct 2DPoint {
 		public double x;
 		public double y;
-	}	
+	}
+
 	public struct graph_sizes_t {
 		public double alloc_width;
 		public double alloc_height;
@@ -44,7 +45,6 @@ namespace Gpx
 		public double start_y;
 		public double end_y;
 	}
-
 
 	public class Graph2View: Gtk.EventBox
 	{	
@@ -62,7 +62,7 @@ namespace Gpx
 				public double line_width;
 			}
 
-			public style_t style = style_t() {color = {0, 0, 0, 1}, fill = null, line_width = 1	};
+			public style_t style = style_t() {color = {0, 0, 0, 1}, fill = null, line_width = 1};
 
 			public Data(Gee.ArrayList<2DPoint?> data, int axis_position, Gdk.RGBA color = {0, 0, 0, 1}, Gdk.RGBA? fill = null) {
 				this.points = data;
@@ -302,17 +302,18 @@ namespace Gpx
 					at_x = gs.start_x + (d.axis_position + 1) * AXIS_MARGIN;
 					ctx.move_to(at_x, y);
 					ctx.line_to(at_x - 8, y - 8);
-					ctx.line_to(at_x - 8, y + 8);
-					ctx.fill();
+					
 					int w, h;
-
 
 					var unit = d.points[highlight].y;
 					var markup = _("<b>%.1f</b>").printf(unit);
 					layout.set_markup(markup, -1);
 					layout.get_pixel_size(out w, out h);
 					var width = w > 30 ? w + 5 : 30;
-					ctx.rectangle(at_x - 8 - width, y - 8, width, 16);
+					ctx.line_to(at_x - 8 - width, y - 8);
+				        ctx.line_to(at_x - 8 - width, y + 8);	
+					ctx.line_to(at_x - 8, y + 8);
+					// ctx.rectangle(at_x - 8 - width, y - 8, width, 16);
 					ctx.fill();
 
 					ctx.set_source_rgba(1, 1, 1, 1);
@@ -515,7 +516,7 @@ namespace Gpx
 
 // 					text = _("Speed")+":\t"+       Gpx.Viewer.Misc.convert(this.draw_current.speed, 	Gpx.Viewer.Misc.SpeedFormat.SPEED);
 // 					text += "\n"+_("Elevation")+":\t"+ Gpx.Viewer.Misc.convert(this.draw_current.elevation, Gpx.Viewer.Misc.SpeedFormat.ELEVATION);
-// 					text += "\n"+_("Distance")+":\t"+Gpx.Viewer.Misc.convert(this.draw_current.distance,  Gpx.Viewer.Misc.SpeedFormat.DISTANCE);
+// 					text ;+= "\n"+_("Distance")+":\t"+Gpx.Viewer.Misc.convert(this.draw_current.distance,  Gpx.Viewer.Misc.SpeedFormat.DISTANCE);
 //                     if(f.tpe.heartrate > 0) {
 //                         text += "\n"+_("Heart-rate")+": "+"%d".printf(this.draw_current.tpe.heartrate)+_("(bpm)");
 //                     }
@@ -559,6 +560,9 @@ namespace Gpx
 		private int _smooth_factor = 1;
 		private bool _show_points = true;
 		private Graph2View view = new Graph2View();
+
+		signal void selection_changed(Gpx.Track? track, Gpx.Point? start, Gpx.Point? stop);
+
 		public int smooth_factor {
 			get { return _smooth_factor;}
 			set {
@@ -585,7 +589,6 @@ namespace Gpx
 		{
 			// this.highlight = 0;
 			this.track = track;
-			print("SEtting trackt!:)");
 			var data_elevation = new Gee.ArrayList<2DPoint?>();
 			var data_heart = new Gee.ArrayList<2DPoint?>();
 			var data_speed = new Gee.ArrayList<2DPoint?>();
@@ -598,22 +601,13 @@ namespace Gpx
 			this.view.add_data(data_heart, -2, {1, 0.0, 0.0, 1}, null);
 			this.view.add_data(data_speed, -1, {0.1, 0.7, 0.2, 1}, null);
 			this.view.plot();
-			/* Invalidate the previous plot, so it is redrawn */
-			// this.surf = null;
-			// /* Force a redraw */
-			// this.queue_draw();
-			// this.start = null;
-			// this.stop = null;
-			/* */
-			// if(this.track != null && this.track.points != null)
-			// 	selection_changed(this.track, this.track.points.first().data, this.track.points.last().data);
-			// else
-			// 	selection_changed(this.track, null, null);
+			if(this.track != null && this.track.points != null)
+			 	selection_changed(this.track, this.track.points.first().data, this.track.points.last().data);
+			else
+			 	selection_changed(this.track, null, null);
 		}
 
 		public void add_graph_to_container(Gtk.Container container) {
-			print("ADDING THE pgrahs");
-
 			container.add(this.view);
 			this.view.show();
 			container.show_all();
